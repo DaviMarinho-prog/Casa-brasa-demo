@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F5EBDD">
+<meta name="description" content="Casa Brasa — cozinha brasileira contemporânea, ingredientes de origem e encontros à mesa.">
+<title>Casa Brasa — Cozinha brasileira, feita com tempo</title>
+<style>
+:root{
+  --cream:#F5EBDD;--terracotta:#B94E32;--olive:#28392F;--charcoal:#25211E;
+  --paper:#fffaf3;--muted:#6f675d;--line:rgba(37,33,30,.17);--serif:Georgia,"Times New Roman",serif;
+  --sans:Arial,Helvetica,sans-serif;--radius:3px;--max:1240px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{margin:0;background:var(--cream);color:var(--charcoal);font-family:var(--sans);line-height:1.55}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button,input,select,textarea{font:inherit}
+button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:3px solid var(--terracotta);outline-offset:3px}
+.skip-link{position:absolute;left:-9999px;top:8px;background:var(--charcoal);color:white;padding:12px;z-index:1000}
+.skip-link:focus{left:8px}
+.wrap{width:min(var(--max),calc(100% - 64px));margin-inline:auto}
+.eyebrow{font-size:.72rem;text-transform:uppercase;letter-spacing:.18em;font-weight:700;color:var(--terracotta)}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3,.serif{font-family:var(--serif);font-weight:400;letter-spacing:-.035em}
+h1{font-size:clamp(3rem,7.3vw,7.4rem);line-height:.94;max-width:850px;margin:18px 0 26px}
+h2{font-size:clamp(2.4rem,5vw,4.8rem);line-height:1.02;margin-bottom:18px}
+h3{font-size:1.65rem;line-height:1.1;margin-bottom:10px}
+p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:13px 20px;border:1px solid var(--charcoal);background:transparent;text-decoration:none;text-transform:uppercase;letter-spacing:.08em;font-size:.73rem;font-weight:700;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.btn:hover{background:var(--charcoal);color:var(--cream)}
+.btn-primary{background:var(--terracotta);border-color:var(--terracotta);color:#fffaf3}
+.btn-primary:hover{background:#923a25;border-color:#923a25;color:white}
+.btn-light{border-color:rgba(255,255,255,.65);color:white}
+.btn-light:hover{background:white;color:var(--charcoal)}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(245,235,221,.96);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.brand-mark{width:34px;height:34px;border:1px solid var(--terracotta);border-radius:50%;display:grid;place-items:center;color:var(--terracotta);font-family:var(--serif);font-size:1.2rem}
+.brand-name{font-family:var(--serif);font-size:1.55rem;letter-spacing:-.04em}
+.brand-name small{display:block;font:700 .54rem var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:-4px}
+.nav-links{display:flex;align-items:center;gap:clamp(12px,2vw,28px)}
+.nav-links a{text-decoration:none;font-size:.76rem;color:var(--charcoal);white-space:nowrap}
+.nav-links a:hover{color:var(--terracotta)}
+.nav .btn{min-height:44px;padding:10px 15px}
+.menu-toggle{display:none;min-width:44px;min-height:44px;border:1px solid var(--line);background:transparent;font-size:1.25rem}
+.hero{padding:34px 0 72px}
+.hero-grid{display:grid;grid-template-columns:1.03fr .97fr;align-items:center;gap:clamp(30px,6vw,86px)}
+.hero-copy{padding:48px 0 38px}
+.hero-copy .intro{font-size:1.08rem;max-width:460px;line-height:1.8}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-note{display:flex;align-items:center;gap:12px;margin-top:36px;font-size:.75rem;letter-spacing:.05em;color:var(--muted)}
+.hero-note:before{content:"";width:38px;height:1px;background:var(--terracotta)}
+.hero-visual{position:relative;min-width:0}
+.hero-photo{width:100%;height:clamp(440px,56vw,690px);object-fit:cover;object-position:center;border-radius:2px}
+.photo-caption{position:absolute;left:-28px;bottom:26px;background:var(--olive);color:var(--cream);padding:18px 20px;max-width:225px;font-family:var(--serif);font-size:1.25rem;line-height:1.25}
+.photo-caption span{display:block;font:700 .62rem var(--sans);text-transform:uppercase;letter-spacing:.14em;color:#d9c8ad;margin-bottom:8px}
+.section{padding:100px 0}
+.section-top{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:38px}
+.section-top p{max-width:390px;margin-bottom:5px}
+.featured{background:var(--paper)}
+.dish-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.dish-card{min-width:0}
+.dish-image{width:100%;aspect-ratio:4/4.5;object-fit:cover;margin-bottom:18px;background:#e4d8c7}
+.dish-meta{display:flex;justify-content:space-between;gap:14px;align-items:start}
+.dish-meta h3{font-size:1.6rem}
+.price{font-weight:700;color:var(--terracotta);white-space:nowrap;font-size:.9rem}
+.dish-card p{font-size:.9rem;max-width:330px}
+.menu-section{background:var(--olive);color:var(--cream)}
+.menu-section p{color:#d2d0c5}
+.menu-section .eyebrow{color:#e2a28c}
+.menu-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:34px}
+.menu-head p{max-width:390px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.filter-btn{min-height:44px;padding:10px 17px;border:1px solid rgba(245,235,221,.35);color:var(--cream);background:transparent;cursor:pointer;border-radius:99px;font-size:.82rem}
+.filter-btn[aria-pressed="true"],.filter-btn:hover{background:var(--cream);color:var(--olive);border-color:var(--cream)}
+.menu-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 46px}
+.menu-item{display:grid;grid-template-columns:1fr auto;gap:10px 20px;padding:23px 0;border-bottom:1px solid rgba(245,235,221,.2)}
+.menu-item h3{font-size:1.35rem;margin:0}
+.menu-item .price{color:#f0b09a}
+.menu-item p{grid-column:1/-1;margin:0;font-size:.88rem;max-width:520px}
+.story-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,7vw,100px);align-items:center}
+.story-image-wrap{position:relative}
+.story-image{width:100%;aspect-ratio:4/5;object-fit:cover}
+.story-stamp{position:absolute;right:-24px;bottom:24px;background:var(--terracotta);color:white;width:116px;height:116px;border-radius:50%;display:grid;place-items:center;text-align:center;font:1.1rem/1.1 var(--serif);transform:rotate(8deg);padding:14px}
+.story-copy p{max-width:510px}
+.story-signature{font-family:var(--serif);font-style:italic;font-size:1.55rem;color:var(--olive);margin-top:24px}
+.values{display:flex;gap:26px;flex-wrap:wrap;margin-top:32px;padding-top:22px;border-top:1px solid var(--line)}
+.value{flex:1;min-width:120px}
+.value strong{display:block;font:1.25rem var(--serif);color:var(--terracotta)}
+.value span{font-size:.76rem;color:var(--muted)}
+.events{background:#e8dac7}
+.event-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.event-card{position:relative;min-height:330px;display:flex;align-items:end;overflow:hidden;background:var(--olive);color:white}
+.event-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.event-card:hover img{transform:scale(1.04)}
+.event-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,25,20,.85),rgba(20,25,20,0) 75%)}
+.event-copy{position:relative;z-index:1;padding:28px;max-width:470px}
+.event-copy p{color:#f3e8d9;margin-bottom:0}
+.gallery-grid{display:grid;grid-template-columns:1.15fr .85fr .85fr;grid-template-rows:220px 220px;gap:12px}
+.gallery-item{border:0;padding:0;background:#ddd;cursor:pointer;overflow:hidden;min-width:0;min-height:0}
+.gallery-item:first-child{grid-row:span 2}
+.gallery-item:nth-child(4){grid-column:2/4}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .35s}
+.gallery-item:hover img{transform:scale(1.04)}
+.reviews{background:var(--paper)}
+.review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.review-card{padding:28px;border:1px solid var(--line);display:flex;flex-direction:column;min-height:230px}
+.stars{letter-spacing:.14em;color:var(--terracotta);font-size:.9rem;margin-bottom:16px}
+.review-card blockquote{margin:0 0 22px;font:1.35rem/1.35 var(--serif);letter-spacing:-.02em}
+.review-author{margin-top:auto;font-size:.76rem;color:var(--muted)}
+.review-note{font-size:.72rem;margin-top:18px}
+.visit{background:var(--terracotta);color:#fffaf3}
+.visit .eyebrow{color:#f4d6c8}
+.visit p{color:#f8e4da}
+.visit-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,7vw,100px)}
+.visit-details{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.detail h3{font:700 .7rem var(--sans);letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+.detail p{font-size:.9rem;margin:0}
+.booking{background:var(--cream);color:var(--charcoal);padding:32px}
+.booking h3{font-size:2rem;margin-bottom:6px}
+.booking>p{font-size:.85rem}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.field.full{grid-column:1/-1}
+.field label{font-size:.76rem;font-weight:700}
+.field input,.field select,.field textarea{width:100%;min-height:48px;border:1px solid #bfb3a3;background:#fffaf3;padding:12px;color:var(--charcoal);border-radius:0}
+.field textarea{min-height:90px;resize:vertical}
+.booking .btn{width:100%;margin-top:18px}
+.form-message{display:none;margin-top:14px;padding:12px;border:1px solid var(--olive);background:#e6eadf;color:var(--olive);font-size:.86rem}
+.form-message.show{display:block}
+.demo-note{font-size:.72rem!important;margin:12px 0 0!important}
+.site-footer{background:var(--charcoal);color:var(--cream);padding:42px 0}
+.footer-grid{display:flex;justify-content:space-between;gap:30px;align-items:center}
+.footer-brand .brand-name small{color:#c6b9a9}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap}
+.footer-links a{color:var(--cream);font-size:.78rem;text-decoration:none}
+.footer-bottom{border-top:1px solid rgba(245,235,221,.18);margin-top:28px;padding-top:20px;display:flex;justify-content:space-between;gap:20px;font-size:.72rem;color:#bcb2a6}
+.whatsapp{position:fixed;right:20px;bottom:20px;z-index:90;width:58px;height:58px;border-radius:50%;background:#286443;color:white;display:grid;place-items:center;text-decoration:none;box-shadow:0 6px 24px #25211e30;font-size:1.4rem;border:2px solid var(--cream)}
+.admin-overlay{position:fixed;inset:0;z-index:300;background:rgba(20,20,18,.72);padding:16px;overflow:auto;display:grid;place-items:start center}.admin-overlay[hidden]{display:none!important}.admin-panel{width:min(100%,900px);margin:24px auto;background:var(--cream);padding:clamp(18px,4vw,36px);color:var(--charcoal);box-shadow:0 20px 70px #0003}.admin-head{display:flex;justify-content:space-between;gap:18px;align-items:start}.admin-head h2{font-size:clamp(2rem,5vw,3.4rem);margin:8px 0 20px}.admin-close{width:44px;height:44px;font-size:1.6rem;border:1px solid var(--line);background:transparent;cursor:pointer}.admin-panel label{display:block;font-size:.82rem;font-weight:700;margin:10px 0 6px}.admin-panel input{width:100%;min-height:46px;padding:10px;border:1px solid #bfb3a3;background:#fffaf3}.admin-panel form .btn{margin-top:12px}.admin-toolbar{display:grid;grid-template-columns:auto minmax(130px,1fr) auto;align-items:center;gap:12px;margin:18px 0}.admin-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.admin-stat{border:1px solid var(--line);padding:14px}.admin-stat strong{display:block;font:1.7rem var(--serif)}.admin-reservations{display:grid;gap:10px}.admin-reservation{border:1px solid var(--line);padding:14px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}.admin-reservation p{margin:4px 0;font-size:.85rem}.admin-actions{display:flex;flex-wrap:wrap;gap:8px}.admin-actions button{min-height:42px;padding:8px 12px;border:1px solid var(--line);background:transparent;cursor:pointer}.admin-settings{margin-top:24px;padding-top:18px;border-top:1px solid var(--line)}.admin-settings input{max-width:160px}.admin-settings .btn{margin:10px 8px 0 0}.admin-empty{padding:22px;border:1px dashed var(--line);color:var(--muted)}@media(max-width:520px){.admin-toolbar{grid-template-columns:1fr}.admin-stats{grid-template-columns:1fr}.admin-reservation{grid-template-columns:1fr}.admin-panel{margin:0 auto}.admin-settings .btn{width:100%}}
+.lightbox{position:fixed;inset:0;background:rgba(20,20,18,.92);z-index:200;display:none;align-items:center;justify-content:center;padding:24px}
+.lightbox.open{display:flex}
+.lightbox img{max-width:min(100%,1000px);max-height:82vh;object-fit:contain}
+.lightbox button{position:absolute;right:20px;top:20px;width:48px;height:48px;background:var(--cream);border:0;font-size:1.5rem;cursor:pointer}
+[hidden]{display:none!important}
+@media(max-width:1050px){
+ .wrap{width:min(var(--max),calc(100% - 48px))}
+ .nav-links{gap:14px}
+ .nav-links a{font-size:.72rem}
+ .nav>.btn{display:none}
+ .hero-grid{gap:32px}
+ .photo-caption{left:-14px}
+ .section{padding:82px 0}
+ .gallery-grid{grid-template-rows:190px 190px}
+}
+@media(max-width:800px){
+ .wrap{width:calc(100% - 40px)}
+ .nav{min-height:70px}
+ .menu-toggle{display:block}
+ .nav-links{display:none;position:absolute;left:0;right:0;top:100%;background:var(--cream);padding:14px 20px 22px;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch;gap:0}
+ .nav-links.open{display:flex}
+ .nav-links a{font-size:.9rem;padding:13px 4px;border-bottom:1px solid var(--line)}
+ .nav-links a:last-child{border-bottom:0}
+ .hero{padding-top:18px}
+ .hero-grid{grid-template-columns:1fr;gap:20px}
+ .hero-copy{padding:35px 0 10px}
+ h1{font-size:clamp(3.3rem,10vw,5.6rem)}
+ .hero-photo{height:clamp(360px,80vw,560px)}
+ .photo-caption{left:12px;bottom:14px}
+ .section{padding:70px 0}
+ .section-top,.menu-head{align-items:start;flex-direction:column;gap:12px}
+ .dish-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 16px}
+ .dish-card:last-child{grid-column:1/-1;max-width:calc(50% - 8px)}
+ .menu-list{gap:0 24px}
+ .story-grid{grid-template-columns:1fr;gap:36px}
+ .story-image-wrap{max-width:560px}
+ .story-stamp{right:12px}
+ .event-grid{grid-template-columns:1fr}
+ .event-card{min-height:300px}
+ .gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:220px 180px 180px}
+ .gallery-item:first-child{grid-row:span 2}
+ .gallery-item:nth-child(4){grid-column:1/-1}
+ .review-grid{grid-template-columns:1fr 1fr}
+ .visit-grid{grid-template-columns:1fr;gap:32px}
+}
+@media(max-width:520px){
+ .wrap{width:calc(100% - 32px)}
+ .brand-name{font-size:1.4rem}
+ .brand-mark{width:31px;height:31px}
+ h1{font-size:clamp(2.9rem,14vw,4.4rem)}
+ h2{font-size:clamp(2.35rem,11vw,3.5rem)}
+ .hero-copy .intro{font-size:1rem}
+ .hero-actions .btn{width:100%}
+ .hero-photo{height:390px}
+ .photo-caption{max-width:190px;font-size:1.08rem;padding:14px}
+ .section{padding:60px 0}
+ .dish-grid{grid-template-columns:1fr;gap:28px}
+ .dish-card:last-child{grid-column:auto;max-width:none}
+ .dish-image{aspect-ratio:4/3}
+ .menu-list{grid-template-columns:1fr}
+ .menu-item{padding:20px 0}
+ .values{gap:18px}
+ .value{min-width:calc(50% - 12px)}
+ .gallery-grid{grid-template-rows:190px 140px 140px;gap:8px}
+ .review-grid{grid-template-columns:1fr}
+ .review-card{min-height:0}
+ .visit-details{grid-template-columns:1fr 1fr;gap:18px}
+ .booking{padding:22px 18px}
+ .form-grid{grid-template-columns:1fr}
+ .field.full{grid-column:auto}
+ .footer-grid,.footer-bottom{align-items:flex-start;flex-direction:column}
+ .footer-links{gap:12px 18px}
+ .whatsapp{width:52px;height:52px;right:14px;bottom:14px}
+}
+/* Refinos de composição responsiva: preservam a identidade e evitam lacunas na galeria. */
+@media(max-width:800px){
+ .hero-copy{min-width:0}
+ .hero-note{align-items:flex-start;line-height:1.5}
+ .story-grid,.visit-grid{min-width:0}
+ .gallery-grid{grid-auto-flow:row}
+ .gallery-item{min-width:0;min-height:0}
+ .booking{min-width:0}
+}
+@media(max-width:520px){
+ .hero{padding-bottom:48px}
+ .hero-copy{padding-top:26px}
+ .hero-note{font-size:.7rem;gap:9px}
+ .photo-caption{left:10px;bottom:10px;max-width:min(190px,calc(100% - 20px))}
+ .menu-item{grid-template-columns:minmax(0,1fr) auto;gap:8px 12px}
+ .menu-item h3{overflow-wrap:anywhere}
+ .price{font-size:.84rem}
+ .visit-details{grid-template-columns:1fr 1fr}
+ .gallery-item:focus-visible{outline-offset:-3px}
+ .whatsapp{right:12px;bottom:12px}
+}
+@media(min-width:801px) and (max-width:1050px){
+ .nav{gap:16px}
+ .brand-name{font-size:1.4rem}
+ .nav-links{gap:12px}
+ .nav-links a{font-size:.7rem}
+ .hero-copy{min-width:0}
+ .photo-caption{left:-10px;max-width:210px}
+ .visit-grid{gap:34px}
+ .booking{padding:26px}
+}
+@media(prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ *,*::before,*::after{transition:none!important;animation:none!important}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#inicio">Pular para o conteúdo</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#inicio" aria-label="Casa Brasa — início">
+      <span class="brand-mark" aria-hidden="true">B</span>
+      <span class="brand-name">casa brasa<small>cozinha brasileira</small></span>
+    </a>
+    <nav class="nav-links" id="navLinks" aria-label="Navegação principal">
+      <a href="#cardapio">Cardápio</a><a href="#historia">Nossa casa</a><a href="#experiencias">Experiências</a><a href="#galeria">Galeria</a><a href="#visite">Contato</a>
+    </nav>
+    <a class="btn btn-primary" href="#reserva">Reservar mesa <span aria-hidden="true">↗</span></a>
+    <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks" aria-label="Abrir menu">☰</button>
+  </div>
+</header>
+<main>
+<section class="hero" id="inicio">
+ <div class="wrap hero-grid">
+  <div class="hero-copy">
+   <span class="eyebrow">Comida de origem. Afeto à mesa.</span>
+   <h1>O Brasil servido <em>com tempo.</em></h1>
+   <p class="intro">Ingredientes de perto, fogo aceso e receitas que contam histórias. Uma cozinha brasileira contemporânea feita para reunir pessoas.</p>
+   <div class="hero-actions"><a class="btn btn-primary" href="#reserva">Reserve sua mesa <span aria-hidden="true">↗</span></a><a class="btn" href="#cardapio">Explore o cardápio</a></div>
+   <div class="hero-note">Cozinha sazonal · Ingredientes locais · Mesa compartilhada</div>
+  </div>
+  <div class="hero-visual">
+   <img class="hero-photo" src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=1400&q=85" alt="Composição ilustrativa em tons terrosos que representa a cozinha da Casa Brasa" fetchpriority="high">
+   <div class="photo-caption"><span>Da nossa cozinha</span>O sabor começa na origem.</div>
+  </div>
+ </div>
+</section>
+<section class="section featured" id="destaques">
+ <div class="wrap">
+  <div class="section-top"><div><span class="eyebrow">Feitos para compartilhar</span><h2>Da brasa à mesa.</h2></div><p>Pratos que respeitam o ingrediente e celebram a mistura de sabores que faz a cozinha brasileira ser única.</p></div>
+  <div class="dish-grid">
+   <article class="dish-card"><img class="dish-image" src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=900&q=85" alt="Prato ilustrativo de peixe com ervas e acompanhamentos" loading="lazy"><div class="dish-meta"><h3>Peixe na brasa</h3><span class="price">R$ 68</span></div><p>Peixe do dia, farofa cítrica, folhas frescas e molho de ervas.</p></article>
+   <article class="dish-card"><img class="dish-image" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=85" alt="Prato ilustrativo de carne assada lentamente" loading="lazy"><div class="dish-meta"><h3>Costela de longa brasa</h3><span class="price">R$ 76</span></div><p>Costela macia, purê de mandioca e cebola tostada.</p></article>
+   <article class="dish-card"><img class="dish-image" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85" alt="Sobremesa ilustrativa com creme e frutas" loading="lazy"><div class="dish-meta"><h3>Doce de leite da casa</h3><span class="price">R$ 24</span></div><p>Doce de leite cremoso, fruta da estação e farofa de castanha.</p></article>
+  </div>
+ </div>
+</section>
+<section class="section menu-section" id="cardapio">
+ <div class="wrap">
+  <div class="menu-head"><div><span class="eyebrow">Ingredientes de verdade</span><h2>Nosso cardápio.</h2></div><p>Uma seleção sazonal inspirada nas cozinhas do Brasil. Os valores são ilustrativos para esta demonstração.</p></div>
+  <div class="filters" role="group" aria-label="Filtrar cardápio">
+   <button class="filter-btn" type="button" data-filter="todos" aria-pressed="true">Tudo</button><button class="filter-btn" type="button" data-filter="entradas" aria-pressed="false">Entradas</button><button class="filter-btn" type="button" data-filter="principais" aria-pressed="false">Principais</button><button class="filter-btn" type="button" data-filter="vegetarianos" aria-pressed="false">Vegetarianos</button><button class="filter-btn" type="button" data-filter="sobremesas" aria-pressed="false">Sobremesas</button>
+  </div>
+  <div class="menu-list" id="menuList">
+   <article class="menu-item" data-category="entradas"><h3>Pão de queijo de forno</h3><span class="price">R$ 18</span><p>Queijo meia-cura, manteiga de garrafa e mel de abelha nativa.</p></article>
+   <article class="menu-item" data-category="principais"><h3>Costela de longa brasa</h3><span class="price">R$ 76</span><p>Costela assada lentamente, purê de mandioca e cebola tostada.</p></article>
+   <article class="menu-item" data-category="entradas"><h3>Abóbora na brasa</h3><span class="price">R$ 26</span><p>Abóbora cabotiá, coalhada, sementes tostadas e coentro.</p></article>
+   <article class="menu-item" data-category="vegetarianos"><h3>Arroz de cogumelos</h3><span class="price">R$ 48</span><p>Arroz cateto, cogumelos salteados, castanha e ervas frescas.</p></article>
+   <article class="menu-item" data-category="principais"><h3>Peixe do dia</h3><span class="price">R$ 68</span><p>Peixe na brasa, farofa cítrica, folhas e molho de ervas.</p></article>
+   <article class="menu-item" data-category="vegetarianos"><h3>Mandioca & legumes</h3><span class="price">R$ 42</span><p>Mandioca dourada, legumes da estação e vinagrete de ervas.</p></article>
+   <article class="menu-item" data-category="sobremesas"><h3>Doce de leite da casa</h3><span class="price">R$ 24</span><p>Doce de leite cremoso, fruta da estação e farofa de castanha.</p></article>
+   <article class="menu-item" data-category="sobremesas"><h3>Bolo morno de fubá</h3><span class="price">R$ 22</span><p>Bolo de fubá, calda de goiabada e creme fresco.</p></article>
+  </div>
+ </div>
+</section>
+<section class="section" id="historia">
+ <div class="wrap story-grid">
+  <div class="story-image-wrap"><img class="story-image" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1000&q=85" alt="Ilustração de cozinha artesanal e materiais naturais" loading="lazy"><div class="story-stamp">Feito com<br>origem</div></div>
+  <div class="story-copy"><span class="eyebrow">A nossa casa</span><h2>Mais que uma refeição, um jeito de receber.</h2><p>A Casa Brasa nasceu da vontade de trazer a cozinha brasileira para perto, respeitando o tempo de cada ingrediente e o trabalho de quem produz.</p><p>Nosso menu muda com a estação, mas a ideia permanece: comida honesta, feita no fogo e servida sem pressa. Aqui, a mesa é lugar de encontro.</p><div class="story-signature">Da nossa casa para a sua.</div><div class="values"><div class="value"><strong>De perto</strong><span>Produtores locais</span></div><div class="value"><strong>Da estação</strong><span>Menu que acompanha o tempo</span></div><div class="value"><strong>Sem pressa</strong><span>Feito para compartilhar</span></div></div></div>
+ </div>
+</section>
+<section class="section events" id="experiencias">
+ <div class="wrap">
+  <div class="section-top"><div><span class="eyebrow">Além do menu</span><h2>Momentos à mesa.</h2></div><p>Encontros pensados para celebrar sabores, pessoas e boas histórias.</p></div>
+  <div class="event-grid">
+   <article class="event-card"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=85" alt="Ilustração de mesa para jantar especial" loading="lazy"><div class="event-copy"><span class="eyebrow">Uma noite diferente</span><h3>Jantares de temporada</h3><p>Menus especiais em poucas etapas, com ingredientes que estão no melhor momento.</p></div></article>
+   <article class="event-card"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1200&q=85" alt="Ilustração de mesa compartilhada para pequenos eventos" loading="lazy"><div class="event-copy"><span class="eyebrow">Reúna quem importa</span><h3>Encontros privados</h3><p>Um espaço acolhedor para comemorações, encontros de equipe e celebrações íntimas.</p></div></article>
+  </div>
+ </div>
+</section>
+<section class="section" id="galeria">
+ <div class="wrap"><div class="section-top"><div><span class="eyebrow">Um pouco da casa</span><h2>O clima da Brasa.</h2></div><p>Detalhes, ingredientes e momentos que fazem parte da nossa mesa.</p></div>
+  <div class="gallery-grid">
+   <button class="gallery-item" type="button" data-lightbox="galeria" aria-label="Ampliar imagem da cozinha"><img src="https://images.unsplash.com/photo-1515003197210-e0cd7184f8b5?auto=format&fit=crop&w=900&q=85" alt="Detalhe ilustrativo do ambiente da Casa Brasa" loading="lazy"></button>
+   <button class="gallery-item" type="button" data-lightbox="galeria" aria-label="Ampliar imagem dos ingredientes"><img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=900&q=85" alt="Ingredientes ilustrativos de origem local" loading="lazy"></button>
+   <button class="gallery-item" type="button" data-lightbox="galeria" aria-label="Ampliar imagem de um prato"><img src="https://images.unsplash.com/photo-1476224203421-9ac39bcb3327?auto=format&fit=crop&w=900&q=85" alt="Prato ilustrativo servido à mesa" loading="lazy"></button>
+   <button class="gallery-item" type="button" data-lightbox="galeria" aria-label="Ampliar imagem de uma mesa posta"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1400&q=85" alt="Mesa posta ilustrativa para compartilhar" loading="lazy"></button>
+  </div>
+ </div>
+</section>
+<section class="section reviews" id="avaliacoes">
+ <div class="wrap"><div class="section-top"><div><span class="eyebrow">Palavras à mesa</span><h2>Quem vem, lembra.</h2></div><p>Depoimentos de exemplo para demonstrar como avaliações de clientes podem aparecer no site.</p></div>
+  <div class="review-grid">
+   <article class="review-card"><div class="stars" aria-label="5 de 5 estrelas">★★★★★</div><blockquote>“Comida cheia de sabor, ambiente acolhedor e atendimento que faz a gente se sentir em casa.”</blockquote><div class="review-author">Cliente demonstrativo · avaliação fictícia</div></article>
+   <article class="review-card"><div class="stars" aria-label="5 de 5 estrelas">★★★★★</div><blockquote>“O cardápio tem personalidade. Cada prato parece ter uma história por trás.”</blockquote><div class="review-author">Cliente demonstrativo · avaliação fictícia</div></article>
+   <article class="review-card"><div class="stars" aria-label="5 de 5 estrelas">★★★★★</div><blockquote>“Um ótimo lugar para comemorar sem pressa e dividir bons pratos com amigos.”</blockquote><div class="review-author">Cliente demonstrativo · avaliação fictícia</div></article>
+  </div>
+  <p class="review-note">* As avaliações acima são fictícias e fazem parte da demonstração do projeto.</p>
+ </div>
+</section>
+<section class="section visit" id="visite">
+ <div class="wrap visit-grid">
+  <div><span class="eyebrow">Sua mesa está esperando</span><h2>Vamos compartilhar uma boa refeição?</h2><p>Venha conhecer a Casa Brasa. Para grupos e ocasiões especiais, fale com a gente antes da visita.</p>
+   <div class="visit-details">
+    <div class="detail"><h3>Endereço demonstrativo</h3><p>Rua das Laranjeiras, 128<br>Vila Madalena · São Paulo, SP</p></div>
+    <div class="detail"><h3>Horários</h3><p>Ter–Sex · 12h–15h / 19h–23h<br>Sáb–Dom · 12h–23h<br>Segunda · fechado</p></div>
+    <div class="detail"><h3>Contato</h3><p>(11) 90000-0000<br>ola@casabrasa.example</p></div>
+    <div class="detail"><h3>Para grupos</h3><p>Jantares privados e encontros sob consulta.</p></div>
+   </div>
+  </div>
+  <div class="booking" id="reserva">
+   <span class="eyebrow">Reservas</span><h3>Reserve sua mesa</h3><p>Escolha data e horário. Se houver capacidade disponível, sua reserva será confirmada automaticamente.</p>
+   <form id="bookingForm">
+    <div class="form-grid">
+     <div class="field"><label for="name">Seu nome</label><input id="name" name="name" autocomplete="name" required maxlength="80" placeholder="Como podemos chamar você?"></div>
+     <div class="field"><label for="phone">Telefone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required maxlength="24" placeholder="(11) 99999-9999"></div>
+     <div class="field"><label for="date">Data</label><input id="date" name="date" type="date" required></div>
+     <div class="field"><label for="time">Horário</label><select id="time" name="time" required><option value="">Escolha um horário</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>19:00</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option></select></div>
+     <div class="field"><label for="guests">Pessoas</label><select id="guests" name="guests" required><option value="1">1 pessoa</option><option value="2" selected>2 pessoas</option><option value="3">3 pessoas</option><option value="4">4 pessoas</option><option value="5">5 pessoas</option><option value="6">6 pessoas</option><option value="7">7 pessoas</option><option value="8">8 pessoas</option></select></div>
+     <div class="field"><label for="occasion">Ocasião (opcional)</label><select id="occasion" name="occasion"><option value="">Nenhuma</option><option>Aniversário</option><option>Encontro</option><option>Comemoração</option><option>Reunião de trabalho</option><option>Outra ocasião</option></select></div>
+     <div class="field full"><label for="notes">Observações (opcional)</label><textarea id="notes" name="notes" maxlength="400" placeholder="Alergias, acessibilidade ou algum pedido especial"></textarea></div>
+    </div>
+    <button class="btn btn-primary" type="submit">Preparar solicitação <span aria-hidden="true">↗</span></button>
+    <div class="form-message" id="formMessage" role="status" aria-live="polite"></div>
+    <p class="demo-note">Protótipo: reservas ficam salvas apenas neste navegador. Não use para reservas reais até conectar um banco de dados seguro.</p>
+   </form>
+  </div>
+ </div>
+</section>
+</main>
+<footer class="site-footer">
+ <div class="wrap">
+  <div class="footer-grid"><a class="brand footer-brand" href="#inicio"><span class="brand-mark" aria-hidden="true">B</span><span class="brand-name">casa brasa<small>cozinha brasileira</small></span></a><div class="footer-links"><a href="#cardapio">Cardápio</a><a href="#historia">Nossa casa</a><a href="#experiencias">Experiências</a><a href="#reserva">Reservas</a></div></div>
+  <div class="footer-bottom"><span>© <span id="year"></span> Casa Brasa · Projeto fictício de portfólio.</span><div class="footer-links"><a href="#inicio">Voltar ao topo ↑</a><a href="#" id="adminOpen">Área administrativa</a></div></div>
+ </div>
+</footer>
+<a class="whatsapp" id="whatsappLink" href="#reserva" aria-label="Falar com a Casa Brasa pelo WhatsApp" title="Falar pelo WhatsApp">✆</a>
+<div class="admin-overlay" id="adminOverlay" hidden>
+ <section class="admin-panel" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+  <div class="admin-head"><div><span class="eyebrow">Casa Brasa</span><h2 id="adminTitle">Gestão de reservas</h2></div><button type="button" class="admin-close" id="adminClose" aria-label="Fechar painel">×</button></div>
+  <div id="adminLogin"><p>Entre para consultar o calendário e gerenciar as reservas deste protótipo.</p><form id="adminLoginForm"><label for="adminPassword">Senha de demonstração</label><input id="adminPassword" type="password" autocomplete="current-password" required><button class="btn btn-primary" type="submit">Entrar</button><p class="demo-note">Acesso demonstrativo: senha 1234. Não é autenticação segura para produção.</p><div class="form-message" id="adminLoginMsg" role="status"></div></form></div>
+  <div id="adminApp" hidden>
+   <div class="admin-toolbar"><label for="adminDate">Ver data</label><input id="adminDate" type="date"><button class="btn" type="button" id="adminExport">Exportar CSV</button></div>
+   <div class="admin-stats" id="adminStats"></div><div id="adminReservations" class="admin-reservations"></div>
+   <div class="admin-settings"><h3>Disponibilidade</h3><p>Capacidade máxima por horário (protótipo)</p><label for="capacity">Lugares por horário</label><input id="capacity" type="number" min="1" max="100" value="24"><button class="btn" id="saveCapacity" type="button">Salvar capacidade</button><button class="btn" id="adminLogout" type="button">Sair</button><p class="demo-note">As configurações e reservas ficam somente neste navegador/dispositivo.</p></div>
+  </div>
+ </section>
+</div>
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualização ampliada da galeria"><button type="button" id="lightboxClose" aria-label="Fechar imagem">×</button><img id="lightboxImage" alt=""></div>
+<script>
+(() => {
+  // Configure aqui o telefone oficial em formato internacional, sem +, espaços ou símbolos.
+  // Exemplo: const WHATSAPP_NUMBER = "5511999999999";
+  const WHATSAPP_NUMBER = "";
+  const WHATSAPP_TEXT = "Olá! Gostaria de saber mais sobre a Casa Brasa.";
+  const whatsappLink = document.getElementById("whatsappLink");
+  if (WHATSAPP_NUMBER.trim()) {
+    whatsappLink.href = "https://wa.me/" + WHATSAPP_NUMBER.trim() + "?text=" + encodeURIComponent(WHATSAPP_TEXT);
+    whatsappLink.target = "_blank";
+    whatsappLink.rel = "noopener noreferrer";
+  } else {
+    whatsappLink.href = "#reserva";
+    whatsappLink.title = "Configure o número do WhatsApp no código para ativar o contato direto";
+    whatsappLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      document.getElementById("reserva").scrollIntoView({behavior:"smooth"});
+      const msg = document.getElementById("formMessage");
+      msg.textContent = "Este é um site demonstrativo. Para ativar o WhatsApp, configure WHATSAPP_NUMBER no código.";
+      msg.classList.add("show");
+    });
+  }
+
+  const toggle = document.getElementById("menuToggle");
+  const nav = document.getElementById("navLinks");
+  toggle.addEventListener("click", () => {
+    const open = nav.classList.toggle("open");
+    toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
+    toggle.textContent = open ? "×" : "☰";
+  });
+  nav.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+    nav.classList.remove("open");
+    toggle.setAttribute("aria-expanded","false");
+    toggle.setAttribute("aria-label","Abrir menu");
+    toggle.textContent = "☰";
+  }));
+
+  document.querySelectorAll(".filter-btn").forEach(btn => btn.addEventListener("click", () => {
+    const filter = btn.dataset.filter;
+    document.querySelectorAll(".filter-btn").forEach(b => b.setAttribute("aria-pressed", String(b === btn)));
+    document.querySelectorAll(".menu-item").forEach(item => {
+      item.hidden = !(filter === "todos" || item.dataset.category === filter);
+    });
+  }));
+
+  const dateInput = document.getElementById("date");
+  const today = new Date();
+  const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000).toISOString().slice(0,10);
+  dateInput.min = localToday;
+  dateInput.value = localToday;
+  document.getElementById("bookingForm").addEventListener("submit", event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+    if (dateInput.value < localToday) {
+      dateInput.setCustomValidity("Escolha hoje ou uma data futura.");
+      dateInput.reportValidity();
+      dateInput.setCustomValidity("");
+      return;
+    }
+    const data = new FormData(form);
+    const guests = Number(data.get("guests"));
+    const date = new Date(data.get("date") + "T12:00:00");
+    const dateLabel = date.toLocaleDateString("pt-BR", {day:"2-digit", month:"long", year:"numeric"});
+    const reservations = readReservations();
+    const capacity = Number(localStorage.getItem("cb_capacity") || 24);
+    const used = reservations.filter(r => r.date === data.get("date") && r.time === data.get("time") && r.status !== "Cancelada").reduce((n,r)=>n+Number(r.guests),0);
+    const msg = document.getElementById("formMessage");
+    if (used + guests > capacity) {
+      msg.textContent = `Não há lugares suficientes às ${data.get("time")}. Escolha outro horário ou reduza a quantidade de pessoas.`;
+      msg.classList.add("show"); msg.scrollIntoView({behavior:"smooth",block:"nearest"}); return;
+    }
+    const reservation = {id:"CB-"+Date.now().toString(36).toUpperCase(),name:String(data.get("name")).trim(),phone:String(data.get("phone")).trim(),date:data.get("date"),time:data.get("time"),guests,occasion:String(data.get("occasion")||""),notes:String(data.get("notes")||""),status:"Confirmada",createdAt:new Date().toISOString()};
+    reservations.push(reservation); saveReservations(reservations);
+    msg.textContent = `Reserva confirmada! Código ${reservation.id}. ${reservation.name}, ${guests} ${guests === 1 ? "pessoa" : "pessoas"}, ${dateLabel}, às ${reservation.time}. Guarde seu código.`;
+    msg.classList.add("show"); msg.scrollIntoView({behavior:"smooth",block:"nearest"}); form.reset(); dateInput.min=localToday; dateInput.value=localToday;
+  });
+
+
+  // Protótipo local: armazenamento restrito ao navegador atual; não substitui backend seguro.
+  const RES_KEY = "casa_brasa_reservations_v1";
+  function readReservations(){ try { return JSON.parse(localStorage.getItem(RES_KEY) || "[]"); } catch { return []; } }
+  function saveReservations(rows){ localStorage.setItem(RES_KEY, JSON.stringify(rows)); }
+  const adminOverlay=document.getElementById("adminOverlay"), adminLogin=document.getElementById("adminLogin"), adminApp=document.getElementById("adminApp");
+  document.getElementById("adminOpen").addEventListener("click",e=>{e.preventDefault();adminOverlay.hidden=false;document.body.style.overflow="hidden";});
+  function closeAdmin(){adminOverlay.hidden=true;document.body.style.overflow="";}
+  document.getElementById("adminClose").addEventListener("click",closeAdmin);
+  adminOverlay.addEventListener("click",e=>{if(e.target===adminOverlay)closeAdmin();});
+  document.getElementById("adminLoginForm").addEventListener("submit",e=>{e.preventDefault();const msg=document.getElementById("adminLoginMsg");if(document.getElementById("adminPassword").value!=="1234"){msg.textContent="Senha incorreta.";msg.classList.add("show");return;}adminLogin.hidden=true;adminApp.hidden=false;const d=document.getElementById("adminDate");d.value=d.value||localToday;renderAdmin();});
+  function renderAdmin(){const date=document.getElementById("adminDate").value||localToday;const rows=readReservations().filter(r=>r.date===date).sort((a,b)=>a.time.localeCompare(b.time));const total=rows.filter(r=>r.status!=="Cancelada").reduce((n,r)=>n+Number(r.guests),0);document.getElementById("adminStats").innerHTML=`<div class="admin-stat"><strong>${rows.length}</strong>Reservas no dia</div><div class="admin-stat"><strong>${total}</strong>Pessoas previstas</div><div class="admin-stat"><strong>${rows.filter(r=>r.status==="Cancelada").length}</strong>Canceladas</div>`;const box=document.getElementById("adminReservations");if(!rows.length){box.innerHTML='<div class="admin-empty">Nenhuma reserva para esta data.</div>';return;}box.innerHTML=rows.map(r=>`<article class="admin-reservation"><div><strong>${esc(r.time)} · ${esc(r.name)}</strong><p>${esc(r.guests)} pessoa(s) · ${esc(r.phone)} · Código ${esc(r.id)}</p><p>Status: <strong>${esc(r.status)}</strong>${r.occasion?' · '+esc(r.occasion):''}</p>${r.notes?'<p>Observações: '+esc(r.notes)+'</p>':''}</div><div class="admin-actions">${r.status!=="Cancelada"?`<button type="button" data-cancel="${esc(r.id)}">Cancelar</button>`:''}<button type="button" data-delete="${esc(r.id)}">Excluir</button></div></article>`).join("");box.querySelectorAll("[data-cancel]").forEach(b=>b.addEventListener("click",()=>{saveReservations(readReservations().map(r=>r.id===b.dataset.cancel?{...r,status:"Cancelada"}:r));renderAdmin();}));box.querySelectorAll("[data-delete]").forEach(b=>b.addEventListener("click",()=>{if(confirm("Excluir esta reserva permanentemente deste navegador?")){saveReservations(readReservations().filter(r=>r.id!==b.dataset.delete));renderAdmin();}}));}
+  function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;", "'":"&#39;"}[c]));}
+  document.getElementById("adminDate").addEventListener("change",renderAdmin);
+  document.getElementById("saveCapacity").addEventListener("click",()=>{const n=Math.max(1,Math.min(100,Number(document.getElementById("capacity").value)||24));localStorage.setItem("cb_capacity",String(n));document.getElementById("capacity").value=n;alert("Capacidade salva neste navegador.");});
+  document.getElementById("capacity").value=localStorage.getItem("cb_capacity")||"24";
+  document.getElementById("adminLogout").addEventListener("click",()=>{adminApp.hidden=true;adminLogin.hidden=false;document.getElementById("adminPassword").value="";});
+  document.getElementById("adminExport").addEventListener("click",()=>{const rows=readReservations().filter(r=>r.date===document.getElementById("adminDate").value);const cols=["id","name","phone","date","time","guests","status","occasion","notes"];const csv=[cols.join(";"),...rows.map(r=>cols.map(k=>'"'+String(r[k]??"").replace(/"/g,'""')+'"').join(";"))].join("\r\n");const a=document.createElement("a");a.href=URL.createObjectURL(new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}));a.download="reservas-casa-brasa.csv";a.click();URL.revokeObjectURL(a.href);});
+
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImage = document.getElementById("lightboxImage");
+  let lastFocus = null;
+  document.querySelectorAll("[data-lightbox]").forEach(button => button.addEventListener("click", () => {
+    const img = button.querySelector("img");
+    if (!img) return;
+    lastFocus = button;
+    lightboxImage.src = img.src;
+    lightboxImage.alt = img.alt;
+    lightbox.classList.add("open");
+    document.getElementById("lightboxClose").focus();
+  }));
+  function closeLightbox(){
+    lightbox.classList.remove("open");
+    lightboxImage.removeAttribute("src");
+    if (lastFocus) lastFocus.focus();
+  }
+  document.getElementById("lightboxClose").addEventListener("click", closeLightbox);
+  lightbox.addEventListener("click", e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener("keydown", e => { if (e.key === "Escape" && lightbox.classList.contains("open")) closeLightbox(); });
+  document.getElementById("year").textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
